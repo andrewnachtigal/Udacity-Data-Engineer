@@ -9,4 +9,4 @@ Repository of projects for the Udacity Data Engineering Nanodegree
 * Massive Datasets
 
 
-![](../art/data-engineering.jpg?raw=true)
+![](../art/data-engineer-web.png?raw=true)
