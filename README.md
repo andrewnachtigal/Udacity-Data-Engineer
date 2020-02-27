@@ -1,14 +1,12 @@
-# Udacity-Data-Engineer
-Nanodegree Project Repository
+# Udacity Data Engineering Nanodegree
+Repository of projects for the Udacity Data Engineering Nanodegree
 
-# Udacity Data Analyst Nanodegree
-Repository of projects completed for the Udacity Data Analyst Nanodegree.
+### Curriculum
 
-### Nanodegree Curriculum
+* Data Model Design
+* Build Data Warehouse and Data Lakes
+* Automate Data Pipelines
+* Massive Datasets
 
-* Fundamentals of Data Analysis
-* Basic Statistics for Data Analysis
-* Data Wrangling Methods
-* Data Visualization Methods
 
-![](../../art/gcd.png?raw=true)
+![](../art/data-engineering.jpg?raw=true)
