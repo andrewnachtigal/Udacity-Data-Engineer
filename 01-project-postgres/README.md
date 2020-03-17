@@ -1,12 +1,8 @@
 ![](/art/data-engineer-web.png?raw=true)
 
 
-# Udacity Data Engineering Nanodegree
-Repository of projects for the Udacity Data Engineering Nanodegree
+# Project 01 - Data Modeling with Postgres
 
-### Curriculum
+### Project Steps
 
-* Data Modeling
-* Cloud Data Warehouses
-* Spark & Data Lakes
-* Automated Data Pipelines
+* step 1
