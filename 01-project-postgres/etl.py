@@ -6,13 +6,17 @@ from sql_queries import *
 
 
 def process_song_file(cur, filepath):
+    """
+
+
+    """
     # open song file
     df = pd.read_json(filepath, lines=True)
 
     # insert song record
     song_data = list(df[['song_id','title','artist_id', 'year', 'duration']].values[0])
     cur.execute(song_table_insert, song_data)
-    
+
     # insert artist record
     artist_data = list(df[['artist_id','artist_name','artist_location','artist_latitude','artist_longitude']].values[0])
     cur.execute(artist_table_insert, artist_data)
@@ -26,9 +30,8 @@ def process_log_file(cur, filepath):
     df = df[df['page'] == 'NextSong']
 
     # convert timestamp column to datetime
-    # t = ...
     df['ts'] = pd.to_datetime(df['ts'], unit='ms')
-    
+
     # insert time data records
     time_data = list(df['ts'].apply(lambda t: [t, t.hour, t.day, t.week, t.month, t.year, t.dayofweek]))
     column_labels = ['timestamp', 'hour', 'day', 'week-of-year', 'month', 'year', 'weekday']
@@ -46,18 +49,19 @@ def process_log_file(cur, filepath):
 
     # insert songplay records
     for index, row in df.iterrows():
-        
+
         # get songid and artistid from song and artist tables
         cur.execute(song_select, (row.song, row.artist, row.length))
         results = cur.fetchone()
-        
+
         if results:
             songid, artistid = results
         else:
             songid, artistid = None, None
 
         # insert songplay record
-        songplay_data = songplay_data = (index, row.ts, row.userId, row.level, songid, artistid, row.sessionId, row.location, row.userAgent)
+        songplay_data = songplay_data = (index, row.ts, row.userId, row.level, \
+            songid, artistid, row.sessionId, row.location, row.userAgent)
         cur.execute(songplay_table_insert, songplay_data)
 
 

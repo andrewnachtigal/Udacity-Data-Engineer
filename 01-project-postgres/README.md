@@ -1,7 +1,12 @@
-
+![](art/postgresql.png?raw=true)
 
 # Project 01 - Data Modeling with Postgres
 
-### Project Steps
+### Project Summary
+* ...
 
-* step 1
+### Python scripts
+* ...
+
+### Files repository
+* ...
