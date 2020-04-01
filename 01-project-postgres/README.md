@@ -25,9 +25,9 @@ From the terminal, navigate to the file working directory and the following pyth
 * etl.py
 
 
-### Explanation of Project File
-* test.ipynb displays the first few rows of each table
+### Explanation of Project Files
+* test.ipynb displays the first few rows of each table.
 * create_tables.py drops and creates database tables. This file resets tables before ETL scripts are run.
 * etl.ipynb is a workbook to read and processe a single file from song_data and log_data and load data into tables.
 * etl.py reads and processes files from song_data and log_data and loads them into tables.
-* sql_queries.py contains sql queries and is used by create_tables.py, etl.ipynb, and etl.py
+* sql_queries.py contains sql queries and is used by create_tables.py, etl.ipynb, and etl.py.
