@@ -6,10 +6,8 @@ from sql_queries import *
 
 
 def process_song_file(cur, filepath):
-    """
-
-
-    """
+    """ETL process reads song_data, selects data columns, converts and
+    inserts data into song & artist tables."""
     # open song file
     df = pd.read_json(filepath, lines=True)
 
@@ -23,6 +21,9 @@ def process_song_file(cur, filepath):
 
 
 def process_log_file(cur, filepath):
+    """ETL process reads log_data, converts timestamp to datetime,
+    inserts into time and users tables. Extracts data from songs and artists
+    tables, and original log file, inserts into songplays table."""
     # open log file
     df = pd.read_json(filepath, lines=True)
 
@@ -30,6 +31,7 @@ def process_log_file(cur, filepath):
     df = df[df['page'] == 'NextSong']
 
     # convert timestamp column to datetime
+    # t = ...
     df['ts'] = pd.to_datetime(df['ts'], unit='ms')
 
     # insert time data records
@@ -60,12 +62,13 @@ def process_log_file(cur, filepath):
             songid, artistid = None, None
 
         # insert songplay record
-        songplay_data = songplay_data = (index, row.ts, row.userId, row.level, \
-            songid, artistid, row.sessionId, row.location, row.userAgent)
+        songplay_data = songplay_data = (index, row.ts, row.userId, row.level, songid, artistid, row.sessionId, row.location, row.userAgent)
         cur.execute(songplay_table_insert, songplay_data)
 
 
 def process_data(cur, conn, filepath, func):
+    """Creates list of all files in filepath, iterates over and processes each
+    log file."""
     # get all files matching extension from directory
     all_files = []
     for root, dirs, files in os.walk(filepath):
@@ -85,6 +88,7 @@ def process_data(cur, conn, filepath, func):
 
 
 def main():
+    """Runs ETL process to read, convert, and load data into database tables."""
     conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=student password=student")
     cur = conn.cursor()
 

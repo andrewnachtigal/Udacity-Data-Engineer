@@ -1,16 +1,10 @@
 # DROP TABLES
 
 songplay_table_drop = "DROP table IF EXISTS songplays"
-
 user_table_drop = "DROP table IF EXISTS users"
-
 song_table_drop = "DROP table IF EXISTS songs"
-
 artist_table_drop = "DROP table IF EXISTS artists"
-
 time_table_drop = "DROP table IF EXISTS time"
-
-
 
 # CREATE TABLES
 
@@ -90,7 +84,7 @@ INSERT INTO users (user_id, \
                 gender, \
                 level) \
                 VALUES (%s, %s, %s, %s, %s)
-                ON CONFLICT ON CONSTRAINT users_pkey 
+                ON CONFLICT ON CONSTRAINT users_pkey
                 DO UPDATE Set level = excluded.level; /* key word 'excluded', refer to target column */
 """)
 
