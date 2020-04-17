@@ -7,9 +7,8 @@
 * Implement an Apache Cassandra database to query user data for data analytics.
 * Implement an ETL pipeline for a Apache Cassandra database which can query song play data.
 
-#### Project Data
-* event_data:
-    A directory of CSV files partitioned by date containing songs and user activity.
+### Project Data
+* event_data: a directory of CSV files partitioned by date containing songs and user activity.
 
 ### Apache Cassandra ETL Pipeline Steps
 * Transfer data from a set of CSV files to create a single CSV file for subsequent data modeling.
