@@ -32,5 +32,6 @@ The database is designed using a Star Schema: A fact table and dimension tables
 * artists
 * times
 
+![](../png/dwh-db-schema.png?raw=true)
 
 © 2020 GitHub, Inc.
