@@ -31,5 +31,3 @@ The database is designed using a Star Schema: A fact table and dimension tables
 * songs
 * artists
 * times
-
-![](../png/dwh-schema.png?raw=true)
