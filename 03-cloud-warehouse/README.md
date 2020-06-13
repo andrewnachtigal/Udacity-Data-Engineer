@@ -1,19 +1,13 @@
-1. Discuss the purpose of this database in context of the startup, Sparkify, and their analytical goals.
-2. State and justify your database schema design and ETL pipeline.
-
-3. [Optional] Provide example queries and results for song play analysis.
-
-
 ## Data Warehouse Setup for Song Play Analysis
 
-A fictional music streaming startup, Sparkify, has grown their user base and song database and want to move their processes and data onto the cloud. Their data resides in S3, in a directory of JSON logs on user activity on the app, as well as a directory with JSON metadata on the songs in their app.
+Design and implement a database for a fictional music streaming startup, Sparkify in order to move processes and data onto the cloud. The data resides in S3, in a directory of JSON logs on user activity on the app, as well as a directory with JSON metadata on the songs in their app.
 
 ## Main Processing Steps
 
-extracts data from S3
-stages them in Redshift
-transforms data into a set of dimensional tables (star schema) for their analytics team to continue finding insights in what songs their users are listening to
-run queries for testing, given by the fictional analytics team of Sparkify
+* extracts data from S3
+* stages them in Redshift
+* transforms data into a set of dimensional tables (star schema) for their analytics team to continue finding insights * in what songs their users are listening to
+* run queries for testing, given by the fictional analytics team of Sparkify
 
 ## Datasets
 
@@ -25,11 +19,18 @@ Both the song datasets and the user log datasets are read in "json" format. The 
 
 ## Database Design
 
-The database is designed with a Star Schema.
+The database is designed using a Star Schema: A fact table and dimension tables
 
-The "songplays" table is the fact table with auto incrementing id and references to 4 dimension tables:
+**Fact Table**
+
+* songplays
+
+**Dimension Tables**
 
 * users
 * songs
 * artists
 * times
+
+
+© 2020 GitHub, Inc.

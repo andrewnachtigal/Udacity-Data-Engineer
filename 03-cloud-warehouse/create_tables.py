@@ -4,18 +4,21 @@ from sql_queries import create_table_queries, drop_table_queries
 
 
 def drop_tables(cur, conn):
+    """function drops all the tables in the database conteined in the connection and in the list in 'sql_queries.py'."""
     for query in drop_table_queries:
         cur.execute(query)
         conn.commit()
 
 
 def create_tables(cur, conn):
+    """function creates all the tables in the database conteined in the connection and in the list in 'sql_queries.py'."""
     for query in create_table_queries:
         cur.execute(query)
         conn.commit()
 
 
 def main():
+    """main function reads the credentials from Redshift in the archive : (dwh.cfg), and drops tables and creates tables."""
     config = configparser.ConfigParser()
     config.read('dwh.cfg')
 
