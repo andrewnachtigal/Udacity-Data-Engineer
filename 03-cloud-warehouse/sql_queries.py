@@ -1,11 +1,12 @@
 import configparser
 
 
-# CONFIG
+## CONFIG
+
 config = configparser.ConfigParser()
 config.read('dwh.cfg')
 
-# DROP TABLES
+## DROP TABLES
 
 staging_events_table_drop = "DROP TABLE IF EXISTS staging_events"
 staging_songs_table_drop = "DROP TABLE IF EXISTS staging_songs"
@@ -131,7 +132,7 @@ staging_songs_copy = ("""
     """).format(config.get('S3', 'SONG_DATA'), config.get('IAM_ROLE', 'ARN')
 )
 
-## INSERT STATEMENTS - FINAL TABLES
+## INSERT STATEMENTS - FACT & DIMENSION TABLES
 
 songplay_table_insert = ("""
     SELECT DISTINCT
@@ -230,7 +231,7 @@ time_table_insert = ("""
 """)
 
 
-# QUERY LISTS
+## QUERY LISTS
 
 create_table_queries = [staging_events_table_create,
                         staging_songs_table_create,
