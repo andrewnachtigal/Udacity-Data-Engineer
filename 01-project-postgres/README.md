@@ -20,10 +20,9 @@
 ![](../png/songplays-erd.png?raw=true)
 
 ### Running Process
-From the terminal, navigate to the file working directory and the following python scripts:
+From the terminal, navigate to the file working directory and run the following python scripts:
 * create_tables.py
 * etl.py
-
 
 ### Explanation of Project Files
 * test.ipynb displays the first few rows of each table.
