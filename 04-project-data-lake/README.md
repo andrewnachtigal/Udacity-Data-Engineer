@@ -18,7 +18,6 @@ The database is a star schema optimized for song play analytic queries. The Fact
 Table is songplays and Dimension Tables are users, songs, artists, and time.
 
 ![](../png/03-er-diagram-star.png?raw=true)
-![](../png/03-er-diagram-staging.png?raw=true)
 
 ### ETL Implementation Steps
 
