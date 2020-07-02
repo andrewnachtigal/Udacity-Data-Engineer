@@ -1,4 +1,4 @@
-![](../png/aws-emr-spark.png?raw=true)
+![](../png/aws-spark.png?raw=true)
 
 ## Data Warehouse with Amazon EMR and Apache Spark
 
