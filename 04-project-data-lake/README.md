@@ -8,7 +8,7 @@ S3 as a set of dimensional tables in order to facilitate analytics.
 
 --------------------------------------------
 
-### Project Datasets
+## Project Datasets
 
 Data for this project consist of a dataset subset from the Million Song
 Dataset containing metadata about songs and artists as well as a dataset of
@@ -17,7 +17,7 @@ Both datasets are in JSON format.
 
 --------------------------------------------
 
-### Database Schema Design & ETL Pipeline
+## Database Schema Design & ETL Pipeline
 
 The database is a star schema optimized for analytic queries on user song play
 behavior.
@@ -28,7 +28,7 @@ behavior.
 
 --------------------------------------------
 
-### ETL Implementation Steps
+## ETL Implementation Steps
 
 * Extract JSON data from S3
 * Process data into Parquet files using Spark
