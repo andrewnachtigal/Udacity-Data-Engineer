@@ -21,8 +21,8 @@ Both datasets are in JSON format.
 
 The database is a star schema optimized for analytic queries on user song play
 behavior.  
-**Fact Table:** songplays  
-**Dimension Tables:** users, songs, artists, time
+* **Fact Table:** songplays  
+* **Dimension Tables:** users, songs, artists, time
 
 ![](../png/03-er-diagram-star.png?raw=true)
 
