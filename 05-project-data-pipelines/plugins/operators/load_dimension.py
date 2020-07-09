@@ -3,10 +3,14 @@ from airflow.models import BaseOperator
 from airflow.utils.decorators import apply_defaults
 
 class LoadDimensionOperator(BaseOperator):
+    """
+    Loads dimension table in Redshift from data in staging table(s)
+    """
 
     ui_color = '#80BD9E'
 
     @apply_defaults
+
     def __init__(self,
                  # Define your operators params (with defaults) here
                  # Example:
@@ -19,4 +23,4 @@ class LoadDimensionOperator(BaseOperator):
         # self.conn_id = conn_id
 
     def execute(self, context):
-        self.log.info('LoadDimensionOperator not implemented yet')
+        self.log.info('LoadDimensionOperator not implemented yet')'''
