@@ -115,8 +115,7 @@ run_quality_checks = DataQualityOperator(
 # End Operator: end_execution task
 end_operator = DummyOperator(task_id='Stop_execution',  dag=dag)
 
-# Pipeline Data Flow
-
+# Pipeline Data Flow: Task Dependencies
 start_operator >> stage_events_to_redshift
 start_operator >> stage_songs_to_redshift
 
