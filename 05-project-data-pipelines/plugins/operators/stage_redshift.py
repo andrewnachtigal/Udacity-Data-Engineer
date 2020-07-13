@@ -10,19 +10,19 @@ log = logging.getLogger(__name__)
 
 class StageToRedshiftOperator(BaseOperator):
     """
-    Copies JSON data from S3 to staging tables in Redshift data warehouse
+    Executes an COPY command to load files from s3 to Redshift
     """
-
     ui_color = '#358140'
 
-    template_fields = ("s3_key",)
+    template_fields = ("s3_key")
     copy_sql = """
         COPY {}
         FROM '{}'
         ACCESS_KEY_ID '{}'
         SECRET_ACCESS_KEY '{}'
-        REGION AS '{}'
         FORMAT as json '{}'
+        IGNOREHEADER {}
+        DELIMITER '{}'
     """
 
     @apply_defaults
@@ -32,8 +32,8 @@ class StageToRedshiftOperator(BaseOperator):
                  table="",
                  s3_bucket="",
                  s3_key="",
-                 copy_json_option="auto",
-                 region="",
+                 delimiter=",",
+                 ignore_headers=1,
                  *args, **kwargs):
 
         super(StageToRedshiftOperator, self).__init__(*args, **kwargs)
@@ -41,15 +41,16 @@ class StageToRedshiftOperator(BaseOperator):
         self.redshift_conn_id = redshift_conn_id
         self.s3_bucket = s3_bucket
         self.s3_key = s3_key
-        self.copy_json_option = copy_json_option
-        self.region = region
+        self.delimiter = delimiter,
+        self.ignore_headers = ignore_headers
         self.aws_credentials_id = aws_credentials_id
 
     def execute(self, context):
-        self.log.info("Connected with " + self.redshift_conn_id)
         aws_hook = AwsHook(self.aws_credentials_id)
         credentials = aws_hook.get_credentials()
         redshift = PostgresHook(postgres_conn_id=self.redshift_conn_id)
+
+        self.log.info("Clearing data from destination Redshift table")
         redshift.run("DELETE FROM {}".format(self.table))
 
         self.log.info("Copying data from S3 to Redshift")
@@ -60,7 +61,7 @@ class StageToRedshiftOperator(BaseOperator):
             s3_path,
             credentials.access_key,
             credentials.secret_key,
-            self.region,
-            self.copy_json_option
+            self.ignore_headers,
+            self.delimiter
         )
         redshift.run(formatted_sql)

@@ -1,5 +1,4 @@
 import logging
-
 from airflow.hooks.postgres_hook import PostgresHook
 from airflow.models import BaseOperator
 from airflow.utils.decorators import apply_defaults
@@ -15,21 +14,6 @@ class DataQualityOperator(BaseOperator):
     :param test_query: SQL query to run on Redshift data warehouse
     :param expected_result: Expected result to match against result of
         test_query
-
-    @apply_defaults
-    def __init__(self,
-                 # Define your operators params (with defaults) here
-                 # Example:
-                 # conn_id = your-connection-name
-                 *args, **kwargs):
-
-        super(DataQualityOperator, self).__init__(*args, **kwargs)
-        # Map params here
-        # Example:
-        # self.conn_id = conn_id
-
-    def execute(self, context):
-        self.log.info('DataQualityOperator not implemented yet')
     """
 
     ui_color = '#89DA59'
@@ -38,7 +22,6 @@ class DataQualityOperator(BaseOperator):
     def __init__(self,
                  redshift_conn_id="",
                  table="",
-
                  test_query="",
                  expected_result="",
                  *args, **kwargs):
@@ -51,15 +34,12 @@ class DataQualityOperator(BaseOperator):
 
     def execute(self, context):
 
-        self.log.info("Getting credentials")
+        self.log.info("Connected with " + self.redshift_conn_id)
         redshift_hook = PostgresHook(postgres_conn_id=self.redshift_conn_id)
 
-        self.log.info("Running test")
+        self.log.info("testing...")
         records = redshift_hook.get_records(self.test_query)
         if records[0][0] != self.expected_result:
-            raise ValueError(f"""
-                Data quality check failed. \
-                {records[0][0]} does not equal {self.expected_result}
-            """)
+            raise ValueError(f"Data quality check error.")
         else:
             self.log.info("Data quality check passed")

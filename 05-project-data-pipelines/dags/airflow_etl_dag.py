@@ -6,29 +6,25 @@ from airflow.operators import (StageToRedshiftOperator, LoadFactOperator,
                                LoadDimensionOperator, DataQualityOperator)
 from helpers import SqlQueries
 
-# AWS_KEY = os.environ.get('AWS_KEY')
-# AWS_SECRET = os.environ.get('AWS_SECRET')
-
-# DAG contains default_args dictionary
-
+# DAG default_args dict
 default_args = {
     'owner': 'ajn',
     'depends_on_past': False,
-    'start_date': datetime(2019, 1, 12),
+    'start_date': datetime(2020, 7, 10),
     'retries': 3,
     'retry_delay': timedelta(minutes=5),
-    'catchup': False,
     'email_on_retry': False
 }
 
 dag = DAG('airflow_etl_dag',
           default_args=default_args,
           description='Load and transform data in Redshift with Airflow',
-          schedule_interval='@hourly'
+          schedule_interval='@hourly',
+          catchup=False
           )
 
 # Start Operator: start_execution task
-start_operator = DummyOperator(task_id='Begin_execution',  dag=dag)
+start_operator = DummyOperator(task_id='Begin_execution', dag=dag)
 
 # Task: stage data from S3 to Redshift
 stage_events_to_redshift = StageToRedshiftOperator(
@@ -39,7 +35,8 @@ stage_events_to_redshift = StageToRedshiftOperator(
     aws_credentials_id="aws_credentials",
     s3_bucket="udacity-dend",
     s3_key="log_data",
-    json_path="s3://udacity-dend/log_json_path.json",
+    s3_path="s3://udacity-dend/log_data",
+    #json_path="s3://udacity-dend/log_json_path.json",
     file_type="JSON"
 )
 
@@ -49,12 +46,14 @@ stage_songs_to_redshift = StageToRedshiftOperator(
     table="staging_songs",
     redshift_conn_id="redshift",
     aws_credentials_id="aws_credentials",
-    s3_bucket="udacity-dend",
+    s3_bucket="udacity-dend",=
     s3_key="song_data",
-    json_path="auto",
+    s3_path="s3://udacity-dend/song_data",
+    #json_path="auto",
     file_type="JSON"
 )
 
+# Task: load data to fact & dim tables
 load_songplays_table = LoadFactOperator(
     task_id='Load_songplays_fact_table',
     dag=dag,
@@ -95,22 +94,14 @@ load_time_dimension_table = LoadDimensionOperator(
     load_sql_stmt=SqlQueries.time_table_insert
 )
 
-'''
-Data Quality Requirments:
-
-Data must be present / a certain size
-'''
-
 # Data Quality Requirments:
 run_quality_checks = DataQualityOperator(
     task_id='Run_data_quality_checks',
-    dag=dag,
-    tables=['songplays', 'users', 'songs', 'artists', 'time'],
     redshift_conn_id="redshift",
-
-    data_quality_check={'SELECT COUNT(*) FROM songs WHERE songid is NULL', 'expected_result': 0},
-    data_quality_check={'SELECT COUNT(*) FROM public.songplays WHERE userid IS NULL', 'expected_result': 0},
-    ...)
+    test_query='select count(*) from songs where songid is null;',
+    expected_result=0,
+    dag=dag
+)
 
 # End Operator: end_execution task
 end_operator = DummyOperator(task_id='Stop_execution',  dag=dag)

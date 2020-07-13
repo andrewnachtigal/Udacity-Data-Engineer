@@ -1,5 +1,4 @@
 import logging
-
 from airflow.hooks.postgres_hook import PostgresHook
 from airflow.models import BaseOperator
 from airflow.utils.decorators import apply_defaults
@@ -10,10 +9,6 @@ log = logging.getLogger(__name__)
 class LoadFactOperator(BaseOperator):
     """
     Loads fact table in Redshift from data in staging table(s)
-
-    :param redshift_conn_id: Redshift connection ID
-    :param table: Target table in Redshift to load
-    :param select_sql: SQL query for getting data to load into target table
     """
     ui_color = '#F98866'
 
