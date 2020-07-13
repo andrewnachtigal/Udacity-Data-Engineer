@@ -2,9 +2,9 @@
 
 --------------------------------------------
 
-# Data Pipelines with Apache Airflow
+# Data Engineering Nanodegree Capstone Project
 
-This project is the design and implementation of an ETL pipeline for a music streaming service to extract, process and load data using S3 buckets. The end result will be a set of dimensional tables in order to facilitate data analytics.
+This project is the design and implementation of ...
 
 ## Project Datasets
 
