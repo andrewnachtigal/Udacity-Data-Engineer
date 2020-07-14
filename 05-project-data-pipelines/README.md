@@ -3,7 +3,7 @@
 
 --------------------------------------------
 
-# Data Pipelines with Apache Airflow
+## Data Pipelines with Apache Airflow
 
 The goal of this project is to design and implement an ETL solution to enable
 data warehouse task automation and monitoring capabilities. Apache
@@ -19,7 +19,7 @@ event data, and facilitate data analytics.
 
 > Apache Airflow Installation  
 > AWS Redshift Cluster (S3 permissions)  
-> Create Relation Tables in Redshift prior to kicking off Airflow DAG
+> Create Relation Tables in Redshift prior to starting Airflow ETL
 
 ## Project Datasets
 
@@ -28,10 +28,10 @@ Dataset containing metadata about songs and artists as well as a dataset of
 simulated user activity logs for a streaming music app based on the song data.
 Both datasets are in JSON format.
 
-* Song data: `s3://udacity-dend/song_data`
-* Log data: `s3://udacity-dend/log_data`
+> Song data: `s3://udacity-dend/song_data`
+> Log data: `s3://udacity-dend/log_data`
 
-## Database Schema Design & ETL Pipeline
+## Database Schema Design
 
 The **sparkify** database is a star schema optimized for analytic queries on user song play
 behavior.  
@@ -39,20 +39,15 @@ behavior.
 
 * **Dimension Tables:** users, songs, artists, time
 
-
+![](../png/03-er-diagram-star.png?raw=true)
 ![ERD](png/03-er-diagram-star.png)
 
+## Apache Airflow Directed Acyclic Graph ETL
+![](../png/airflow-etl-dag.png?raw=true)
+![ERD](png/airflow-etl-dag.png)
 
-## ETL Implementation Steps
+## Process
 
-* Extract JSON data from S3
-* Process data into Parquet files using Spark
+* Extract JSON data from S3 and write to staging tables
 * Create Fact and Dimension using joined data
-* Perform test analytical queries
-
-## Script
-
-```bash
-cd <project working directory>
-python etl.py
-```
+* Run test analyts queries
