@@ -5,11 +5,12 @@
 
 ## Data Pipelines with Apache Airflow  
 
-The goal of this project is to design and implement an ETL solution to enable
+The goal of this project is to design and implement an ETL pipeline to enhance
 data warehouse task automation and monitoring capabilities. Apache
 Airflow is a workflow management that allows data engineering teams to
-programmatically create, schedule and monitor complex workflows. This data
-engineering solution for a streaming music service company will employ
+programmatically create, schedule and monitor complex workflows.  
+
+This data engineering solution for a streaming music service company will employ
 AWS S3 and Redshift in addition to Apache Airflow. The resulting ETL pipeline
 will allow a streaming service to extract, process and load customer
 event data, and facilitate data analytics.
@@ -26,8 +27,7 @@ Both datasets are in JSON format.
 
 ## Database Schema Design  
 
-The **sparkify** database is a star schema optimized for analytic queries on
-user song play behavior.  
+The database is a star schema optimized for analytic queries on user song play behavior.  
 
 > **Fact Table:** songplays  
 > **Dimension Tables:** users, songs, artists, time
@@ -35,11 +35,18 @@ user song play behavior.
 ![](../png/03-er-diagram-star.png?raw=true)
 ![ERD](png/03-er-diagram-star.png)
 
-## Apache Airflow Directed Acyclic Graph ETL  
+### Apache Airflow DAG ETL  
+
+In Airflow, a DAG – a Directed Acyclic Graph – is a collection of tasks to be
+run to complete an data pipeline job, organized in a way that reflects their
+relationships and dependencies. A DAG is defined in a Python script, which
+represents the DAGs structure (tasks and their dependencies) as code.
+
+The task dependencies for this project are configured such that the graph view
+follows the flow shown in the image below.
 
 ![](../png/airflow-etl-dag.png?raw=true)
 ![ERD](png/airflow-etl-dag.png)
-
 
 ## Dependencies  
 
@@ -51,4 +58,4 @@ user song play behavior.
 
 > Extract JSON data from S3 and write to staging tables
 > Create Fact and Dimension using joined data
-> Run test analyts queries
+> Run analytic queries
