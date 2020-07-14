@@ -1,10 +1,25 @@
+![](../png/airflow.png?raw=true)
 ![ERD](png/airflow.png)
 
 --------------------------------------------
 
 # Data Pipelines with Apache Airflow
 
-This project is the design and implementation of an ETL pipeline for a music streaming service to extract, process and load data using S3 buckets. The end result will be a set of dimensional tables in order to facilitate data analytics.
+The goal of this project is to design and implement an ETL solution to enable
+data warehouse task automation and monitoring capabilities. Apache
+Airflow is a workflow management that allows data engineering teams to
+programmatically create, schedule and monitor complex workflows.
+
+This data engineering solution for a streaming music service company will employ
+AWS S3 and Redshift in addition to Apache Airflow. The resulting ETL pipeline
+will allow a streaming service to extract, process and load customer
+event data, and facilitate data analytics.
+
+## Dependencies
+
+> Apache Airflow Installation  
+> AWS Redshift Cluster (S3 permissions)  
+> Create Relation Tables in Redshift prior to kicking off Airflow DAG
 
 ## Project Datasets
 

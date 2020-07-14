@@ -10,23 +10,32 @@ log = logging.getLogger(__name__)
 class LoadFactOperator(BaseOperator):
     """
     Loads fact table in Redshift from data in staging table(s)
+
+    Parameters:
+        Redshift connection ID
+        Target table in Redshift to load
+        SQL query for getting data to load into target table
     """
+
     ui_color = '#F98866'
+
     @apply_defaults
-    
+
     def __init__(self,
                  redshift_conn_id = "redshift",
-                 sql_stat = "",
-                 load_table = "",
+                 table = "",
+                 sql_load = "",
                  *args, **kwargs):
 
         super(LoadFactOperator, self).__init__(*args, **kwargs)
         self.redshift_conn_id = redshift_conn_id
-        self.sql_stat = sql_stat
-        self.load_table = load_table
-        
+        self.table = table
+        self.sql_load = sql_load
+
     def execute(self, context):
-        self.log.info("Starting data load to fact table.")
-        redshift_hook = PostgresHook(self.redshift_conn_id)        
-        redshift_hook.run(self.sql_stat)
-        self.log.info("Complete data insert to fact table: {}".format(self.load_table))
+        redshift = PostgresHook(postgres_conn_id=self.redshift_conn_id)
+        self.log.info("Loading into fact table...")
+        sql_stmt = 'INSERT INTO %s %s' % (self.table_name, self.sql_load)
+        redshift.run(sql_stmt)
+        self.log.info("Completed data load to fact table.")
+        
