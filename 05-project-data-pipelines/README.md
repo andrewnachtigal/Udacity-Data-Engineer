@@ -5,18 +5,18 @@
 
 ## Data Pipelines with Apache Airflow  
 
-The goal of this project is to design and implement an ETL pipeline to enhance
-data warehouse task automation and monitoring capabilities. An ETL Pipeline is a
-set of processes extracting data from an input source, transforming the data,
-loading it into an output destination such as a database or a data warehouse for
-reporting and analysis. Apache Airflow is a workflow management that allows data
-engineering teams to programmatically create, schedule and monitor complex
+This project is the design and implementation of an ETL pipeline to enhance
+data warehouse task automation and monitoring capabilities for a streaming music
+service. An ETL Pipeline is a set of processes extracting data from an input
+source, transforming the data, loading it into an output destination such as a
+data warehouse for reporting and analysis. The Apache Airflow workflow
+management platform is used to programmatically create, schedule and monitor the
 workflows.  
 
-For this project, an ETL pipeline for a streaming music service company is
-implemented, employing AWS S3 and Redshift in addition to Apache Airflow. The
-resulting ETL pipeline will allow a streaming service to extract, process and
-load customer event data, and facilitate data analytics.
+
+The ETL pipeline for this project employs AWS S3 and Redshift in addition to
+Apache Airflow. The resulting ETL pipeline will allow data engineering teams to
+extract, process and load customer event data, and facilitate data analytics.
 
 ## Project Data  
 
@@ -30,7 +30,8 @@ Both datasets are in JSON format.
 
 ## Database Schema Design  
 
-The database is a star schema optimized for analytic queries on user song play behavior.  
+The database is a star schema optimized for analytic queries on user song play
+behavior, as shown in the entity relationship diagram below.
 
 > **Fact Table:** songplays  
 > **Dimension Tables:** users, songs, artists, time
