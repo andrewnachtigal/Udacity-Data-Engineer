@@ -25,19 +25,29 @@ Dataset containing metadata about songs and artists as well as a dataset of
 simulated user activity logs for a streaming music app based on the song data.
 Both datasets are in JSON format.  
 
-> Song data: `s3://udacity-dend/song_data`
-> Log data: `s3://udacity-dend/log_data`
+> **Song data:** `s3://udacity-dend/song_data`  
+
+> **Log data:** `s3://udacity-dend/log_data`
 
 ## Database Schema Design  
 
 The database is a star schema optimized for analytic queries on user song play
-behavior, as shown in the entity relationship diagram below.
+behavior. The entity relationship diagram below and preliminary ETL
+staging tables are shown below.
 
 > **Fact Table:** songplays  
+
 > **Dimension Tables:** users, songs, artists, time
 
 ![](../png/03-er-diagram-star.png?raw=true)
 ![ERD](png/03-er-diagram-star.png)
+
+
+Staging Tables  
+
+![](../png/03-er-diagram-staging.png?raw=true)
+![ERD](png/03-er-diagram-staging.png)
+
 
 ### Apache Airflow DAG ETL  
 
