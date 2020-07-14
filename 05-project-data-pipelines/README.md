@@ -25,6 +25,7 @@ simulated user activity logs for a streaming music app based on the song data.
 Both datasets are in JSON format.  
 
 > **Song data:** `s3://udacity-dend/song_data`  
+>  
 > **Log data:** `s3://udacity-dend/log_data`
 
 ### Database Schema Design  
@@ -34,11 +35,11 @@ behavior. The entity relationship diagram below and preliminary ETL
 staging tables are shown below.
 
 > **Fact Table:** songplays  
+>  
 > **Dimension Tables:** users, songs, artists, time  
 
 ![](../png/03-er-diagram-star.png?raw=true)
 ![ERD](png/03-er-diagram-star.png)
-
 
 >  **Staging Tables**  
 
@@ -48,8 +49,11 @@ staging tables are shown below.
 ### ETL Implementation Steps
 
 > Create fact, dimension and staging tables.  
+>  
 > Extract JSON data from S3 and write to staging tables in Redshift.  
+>  
 > Copy data to star schema fact and dimension tables in using joined data.  
+>  
 > Perform data quality test queries.  
 
 ### Apache Airflow DAG    
@@ -66,6 +70,8 @@ follows the flow shown in the image below.
 
 ### Project Dependencies  
 
-> Apache Airflow    
+> Apache Airflow  
+>  
 > AWS Redshift Cluster (S3 permissions)  
+>  
 > Create Relation Tables in Redshift prior to starting Airflow ETL  
