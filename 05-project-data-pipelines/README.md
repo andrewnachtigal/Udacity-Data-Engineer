@@ -73,11 +73,11 @@ follows the flow shown in the image below.
 Custom operators (configurable code snippets) are constructed to stage,
 transform, and run data quality checks.
 
-> Stage Operator:'StageToRedshiftOperator'  
+> **Stage Operator:**  'StageToRedshiftOperator'  
 >  
-> Fact and Dimension Operators:'LoadFactOperator' & 'LoadDimensionOperator'  
+> **Fact and Dimension Operators:**  'LoadFactOperator' & 'LoadDimensionOperator'  
 >  
-> Data Quality Operator:'DataQuailtyOperator'  
+> **Data Quality Operator:**  'DataQuailtyOperator'  
 
 ### Project Dependencies  
 
