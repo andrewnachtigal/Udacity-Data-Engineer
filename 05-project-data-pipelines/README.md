@@ -68,6 +68,17 @@ follows the flow shown in the image below.
 ![](../png/airflow-etl-dag.png?raw=true)
 ![ERD](png/airflow-etl-dag.png)
 
+#### Airflow Operators  
+
+Custom operators (configurable code snippets) are constructed to stage,
+transform, and run data quality checks.
+
+> Stage Operator:'StageToRedshiftOperator'  
+>  
+> Fact and Dimension Operators:'LoadFactOperator' & 'LoadDimensionOperator'  
+>  
+> Data Quality Operator:'DataQuailtyOperator'  
+
 ### Project Dependencies  
 
 > Apache Airflow  
