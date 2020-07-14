@@ -6,14 +6,17 @@
 ## Data Pipelines with Apache Airflow  
 
 The goal of this project is to design and implement an ETL pipeline to enhance
-data warehouse task automation and monitoring capabilities. Apache
-Airflow is a workflow management that allows data engineering teams to
-programmatically create, schedule and monitor complex workflows.  
+data warehouse task automation and monitoring capabilities. An ETL Pipeline is a
+set of processes extracting data from an input source, transforming the data,
+loading it into an output destination such as a database or a data warehouse for
+reporting and analysis. Apache Airflow is a workflow management that allows data
+engineering teams to programmatically create, schedule and monitor complex
+workflows.  
 
-This data engineering solution for a streaming music service company will employ
-AWS S3 and Redshift in addition to Apache Airflow. The resulting ETL pipeline
-will allow a streaming service to extract, process and load customer
-event data, and facilitate data analytics.
+For this project, an ETL pipeline for a streaming music service company is
+implemented, employing AWS S3 and Redshift in addition to Apache Airflow. The
+resulting ETL pipeline will allow a streaming service to extract, process and
+load customer event data, and facilitate data analytics.
 
 ## Project Data  
 
