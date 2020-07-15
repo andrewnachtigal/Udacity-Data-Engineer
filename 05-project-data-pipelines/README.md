@@ -48,7 +48,7 @@ staging tables are shown below.
 
 ### ETL Implementation Steps
 
-> Create fact, dimension and staging tables.  
+> Create fact, dimension and staging tables ('create_tables.py').    
 >  
 > Extract JSON data from S3 and write to staging tables in Redshift.  
 >  

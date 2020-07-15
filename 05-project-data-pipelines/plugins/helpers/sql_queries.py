@@ -53,7 +53,6 @@ class SqlQueries:
     """)
 
     user_table_insert = ("""
-        INSERT INTO users (user_id, first_name, last_name, gender, level)
         SELECT distinct user_id as user_id,
         first_name as first_name,
         last_name as last_name,
@@ -64,7 +63,6 @@ class SqlQueries:
     """)
 
     song_table_insert = ("""
-        INSERT INTO songs (song_id, title, artist_id, year, duration)
         SELECT distinct song_id,
             title,
             artist_id,
@@ -74,7 +72,6 @@ class SqlQueries:
     """)
 
     artist_table_insert = ("""
-        INSERT INTO artists (artist_id, name, location, latitude, longitude)
         SELECT distinct artist_id, 
             artist_name as name,
             artist_location as location,
@@ -84,7 +81,6 @@ class SqlQueries:
     """)
 
     time_table_insert = ("""
-        INSERT INTO time (start_time, hour, day, week, month, year, weekday)
         SELECT start_time,
             extract(hour from start_time),
             extract(day from start_time),
@@ -94,6 +90,8 @@ class SqlQueries:
             extract(dayofweek from start_time) as weekday
         FROM songplays
     """)
+    
+
     
     nulls_in_songs_table = ("""
         SELECT count(*) as result

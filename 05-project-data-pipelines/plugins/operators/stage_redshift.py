@@ -18,7 +18,7 @@ class StageToRedshiftOperator(BaseOperator):
                  redshift_conn_id="redshift",
                  aws_conn_id="aws_credentials",
                  source_location="",
-                 load_table="",
+                 targ_table="",
                  file_type="json",
                  json_path="",
                  *args, **kwargs):
@@ -27,7 +27,7 @@ class StageToRedshiftOperator(BaseOperator):
         self.redshift_conn_id = redshift_conn_id
         self.aws_conn_id = aws_conn_id
         self.source_location = source_location
-        self.load_table = load_table
+        self.targ_table = targ_table
         self.file_type = file_type
         self.json_path = json_path
         
@@ -38,12 +38,12 @@ class StageToRedshiftOperator(BaseOperator):
             credentials = aws_hook.get_credentials()
             
             self.log.info(f'StageToRedshiftOperator loading data to staging table.')
-            redshift_hook.run(SqlQueries.truncate_table.format(self.load_table))
+            redshift_hook.run(SqlQueries.truncate_table.format(self.targ_table))
             if self.file_type == "json":
                 if self.json_path != "":
                     redshift_hook.run (
                         SqlQueries.copy_json_with_json_path_to_redshift.format (
-                            self.load_table,
+                            self.targ_table,
                             self.source_location,
                             credentials.access_key, 
                             credentials.secret_key,
@@ -53,7 +53,7 @@ class StageToRedshiftOperator(BaseOperator):
                 else:
                     redshift_hook.run (
                         SqlQueries.copy_json_to_redshift.format (
-                            self.load_table,
+                            self.targ_table,
                             self.source_location,
                             credentials.access_key, 
                             credentials.secret_key
@@ -62,7 +62,7 @@ class StageToRedshiftOperator(BaseOperator):
             elif self.file_type == "csv":
                 redshift_hook.run (
                     SqlQueries.copy_csv_to_redshift.format (
-                    self.load_table,
+                    self.targ_table,
                     self.source_location,
                     credentials.access_key, 
                     credentials.secret_key)
