@@ -1,41 +1,83 @@
-![ERD](png/aws-spark.png)
+# Project Overview
 
---------------------------------------------
-
-# Data Engineering Nanodegree Capstone Project
-
-This project is the design and implementation of ...
-
-## Project Datasets
-
-Data for this project consist of a dataset subset from the Million Song
-Dataset containing metadata about songs and artists as well as a dataset of
-simulated user activity logs for a streaming music app based on the song data.
-Both datasets are in JSON format.
-
-* Song data: `s3://udacity-dend/song_data`
-* Log data: `s3://udacity-dend/log_data`
-
-## Database Schema Design & ETL Pipeline
-
-The **sparkify** database is a star schema optimized for analytic queries on user song play
-behavior.  
-* **Fact Table:** songplays  
-
-* **Dimension Tables:** users, songs, artists, time
+...
 
 
-![ERD](png/03-er-diagram-star.png)
+.. contents:: **Contents**
+  :backlinks: none
 
 
-## ETL Implementation Steps
+Project Data & Scope
+====================
 
-* Extract JSON data from S3
-* Process data into Parquet files using Spark
-* Create Fact and Dimension using joined data
-* Perform test analytical queries
+...
 
-## Script
+Exploratory Data Analysis
+=========================
+
+...
+
+Data Model
+==========
+
+...
+
+Run ETL & Model Data
+====================
+
+Please read `Get Started <https://dvc.org/doc/get-started>`_ guide for a full version. Common workflow commands include:
+
++-----------------------------------+-------------------------------------------------------------------+
+| Step                              | Command                                                           |
++===================================+===================================================================+
+| Track data                        | | ``$ git add train.py``                                          |
+|                                   | | ``$ dvc add images.zip``                                        |
++-----------------------------------+-------------------------------------------------------------------+
+| Connect code and data by commands | | ``$ dvc run -d images.zip -o images/ unzip -q images.zip``      |
+|                                   | | ``$ dvc run -d images/ -d train.py -o model.p python train.py`` |
++-----------------------------------+-------------------------------------------------------------------+
+| Make changes and reproduce        | | ``$ vi train.py``                                               |
+|                                   | | ``$ dvc repro model.p.dvc``                                     |
++-----------------------------------+-------------------------------------------------------------------+
+| Share code                        | | ``$ git add .``                                                 |
+|                                   | | ``$ git commit -m 'The baseline model'``                        |
+|                                   | | ``$ git push``                                                  |
++-----------------------------------+-------------------------------------------------------------------+
+| Share data and ML models          | | ``$ dvc remote add myremote -d s3://mybucket/image_cnn``        |
+|                                   | | ``$ dvc push``                                                  |
++-----------------------------------+-------------------------------------------------------------------+v
+
+Project Review & Write Up
+=========================
+
+Project Goal, Queries, Architecture, Model Justification
+--------------------------------------------------------
+
+...
+
+tools and technologies Rationale
+--------------------------------
+
+...
+
+
+Process Documentation
+---------------------
+
+...
+
+Data Update Schedule
+--------------------
+
+...
+
+Further Project Considerations
+------------------------------
+
+...
+
+
+
 
 ```bash
 cd <project working directory>
